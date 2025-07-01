@@ -15,7 +15,7 @@
       align-items: center;
       height: 100vh;
     }
-    .login-box, .options-box {
+    .login-box {
       background: rgba(255,255,255,0.95);
       padding: 30px;
       border-radius: 10px;
@@ -23,7 +23,7 @@
       width: 350px;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
-    .login-box img, .options-box img {
+    .login-box img {
       width: 120px;
       margin-bottom: 20px;
     }
@@ -34,7 +34,7 @@
       border: 1px solid #ccc;
       border-radius: 5px;
     }
-    .login-box button, .options-box button {
+    .login-box button {
       width: 100%;
       padding: 12px;
       background: #1976d2;
@@ -45,7 +45,39 @@
       font-size: 16px;
       margin-top: 10px;
     }
-    .login-box button:hover, .options-box button:hover {
+    .login-box button:hover {
+      background: #125ea7;
+    }
+
+    /* Options styles */
+    .options-page {
+      display: none;
+      flex-direction: column;
+      background: white;
+      height: 100vh;
+      width: 100%;
+      padding: 20px;
+    }
+    .options-header img {
+      width: 120px;
+    }
+    .options-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .options-buttons button {
+      padding: 15px 25px;
+      background: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .options-buttons button:hover {
       background: #125ea7;
     }
   </style>
@@ -63,16 +95,19 @@
     </form>
   </div>
 
-  <!-- Options after login -->
-  <div class="options-box" id="optionsBox" style="display:none;">
-    <img src="avini-logo.png" alt="AVINI LABS Logo">
-    <h2>Select Option</h2>
-    <button onclick="selectOption('Master')">Master</button>
-    <button onclick="selectOption('Technical')">Technical</button>
-    <button onclick="selectOption('Front Office')">Front Office</button>
-    <button onclick="selectOption('Accounts')">Accounts</button>
-    <button onclick="selectOption('Franchisee')">Franchisee</button>
-    <button onclick="selectOption('Others')">Others</button>
+  <!-- Options Page -->
+  <div class="options-page" id="optionsPage">
+    <div class="options-header">
+      <img src="avini-logo.png" alt="AVINI LABS Logo">
+    </div>
+    <div class="options-buttons">
+      <button onclick="selectOption('Master')">Master</button>
+      <button onclick="selectOption('Technical')">Technical</button>
+      <button onclick="selectOption('Front Office')">Front Office</button>
+      <button onclick="selectOption('Accounts')">Accounts</button>
+      <button onclick="selectOption('Franchisee')">Franchisee</button>
+      <button onclick="selectOption('Others')">Others</button>
+    </div>
   </div>
 
   <script>
@@ -83,9 +118,10 @@
 
       // Simple demo validation
       if(username === "admin" && password === "1234") {
-        // Hide login box, show options
+        // Hide login, show options
         document.getElementById("loginBox").style.display = "none";
-        document.getElementById("optionsBox").style.display = "block";
+        document.body.style.background = "white";
+        document.getElementById("optionsPage").style.display = "flex";
       } else {
         alert("Invalid Username or Password");
       }
@@ -93,10 +129,11 @@
 
     function selectOption(option) {
       alert("You selected: " + option);
-      // Later redirect to respective page, for example:
+      // Later redirect to respective page
       // window.location.href = option.toLowerCase() + ".html";
     }
   </script>
 
 </body>
 </html>
+
