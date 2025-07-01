@@ -2,37 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Billing System - Avini Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Billing - AVINI LABS</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="container">
-    <h1>Billing System</h1>
-    <form>
-      <label>Patient Name:</label><br />
-      <input type="text" name="patientname" required /><br /><br />
+    <h1>Billing Entry</h1>
+    <form id="billingForm">
+      <label for="patientName">Patient Name</label>
+      <input type="text" id="patientName" name="patientName" required />
 
-      <label>Test Charges:</label><br />
-      <input type="number" name="testcharges" required /><br /><br />
+      <label for="testName">Test Name</label>
+      <input type="text" id="testName" name="testName" required />
 
-      <label>Other Charges:</label><br />
-      <input type="number" name="othercharges" /><br /><br />
+      <label for="amount">Amount</label>
+      <input type="number" id="amount" name="amount" required />
 
-      <label>Total Amount:</label><br />
-      <input type="number" name="total" readonly /><br /><br />
+      <label for="paymentMode">Payment Mode</label>
+      <select id="paymentMode" name="paymentMode" required>
+        <option value="">Select</option>
+        <option value="Cash">Cash</option>
+        <option value="Card">Card</option>
+        <option value="UPI">UPI</option>
+        <option value="Online">Online</option>
+      </select>
 
-      <button type="button" onclick="calculateTotal()">Calculate Total</button>
-      <button type="submit">Generate Bill</button>
+      <label for="date">Date</label>
+      <input type="date" id="date" name="date" required />
+
+      <button type="submit">Save Billing</button>
     </form>
   </div>
 
   <script>
-    function calculateTotal() {
-      const test = parseFloat(document.getElementsByName('testcharges')[0].value) || 0;
-      const other = parseFloat(document.getElementsByName('othercharges')[0].value) || 0;
-      document.getElementsByName('total')[0].value = test + other;
-    }
+    const form = document.getElementById('billingForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const billingData = {
+        patientName: form.patientName.value,
+        testName: form.testName.value,
+        amount: form.amount.value,
+        paymentMode: form.paymentMode.value,
+        date: form.date.value
+      };
+
+      console.log('Billing Data:', billingData);
+      alert('Billing Data Saved Successfully! (Currently to console only)');
+      form.reset();
+    });
   </script>
 </body>
 </html>
