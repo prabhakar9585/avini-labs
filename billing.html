@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Billing System - Avini Labs</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Billing System</h1>
+    <form>
+      <label>Patient Name:</label><br />
+      <input type="text" name="patientname" required /><br /><br />
+
+      <label>Test Charges:</label><br />
+      <input type="number" name="testcharges" required /><br /><br />
+
+      <label>Other Charges:</label><br />
+      <input type="number" name="othercharges" /><br /><br />
+
+      <label>Total Amount:</label><br />
+      <input type="number" name="total" readonly /><br /><br />
+
+      <button type="button" onclick="calculateTotal()">Calculate Total</button>
+      <button type="submit">Generate Bill</button>
+    </form>
+  </div>
+
+  <script>
+    function calculateTotal() {
+      const test = parseFloat(document.getElementsByName('testcharges')[0].value) || 0;
+      const other = parseFloat(document.getElementsByName('othercharges')[0].value) || 0;
+      document.getElementsByName('total')[0].value = test + other;
+    }
+  </script>
+</body>
+</html>
